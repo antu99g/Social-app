@@ -208,7 +208,7 @@ function Post({ post, self, handleDeletePost }) {
 
          <img
             src={`http://localhost:8000/${post.avatar}`}
-            alt="image"
+            alt="avatar"
             className={styles.postAuthorImg}
          />
          <div className={styles.postAuthor}>
@@ -242,7 +242,7 @@ function Post({ post, self, handleDeletePost }) {
                                 src={`http://localhost:8000/${imageUrl}`}
                                 loading="lazy"
                                 decoding="async"
-                                alt="image"
+                                alt="avatar"
                              />
 
                              <FaTimesCircle
@@ -269,7 +269,7 @@ function Post({ post, self, handleDeletePost }) {
                                 src={`http://localhost:8000/${imageUrl}`}
                                 loading="lazy"
                                 decoding="async"
-                                alt="image"
+                                alt="avatar"
                              />
 
                              {index === 3 &&
