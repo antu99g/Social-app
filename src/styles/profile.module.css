@@ -1,0 +1,193 @@
+/* Parent container of page */
+.profilePage{
+   margin-top: 11vh;
+   /* width: 60vw;
+   margin: auto; */
+   /* height: 100vh; */
+   /* overflow-y: auto; */
+}
+.profilePage::-webkit-scrollbar {
+   width: 0 !important;
+}
+
+
+/* Button to go back */
+
+.homeBtn{
+   background-color: white;
+   margin: 15px;
+   display: block;
+}
+.homeBtn > svg{
+   font-size: .8em;
+}
+
+
+/* Profile image and name section */
+.profileDetail{
+   background-color: white;
+   width: 60%;
+   padding-bottom: 3vh;
+   margin: auto;
+   display: flex;
+   align-items: center;
+}
+.profileDetail > .profileImg{
+   width: 120px;
+   border-radius: 50%;
+   /* margin-left: 4vw; */
+}
+.profileDetail > .cancelEditProfileImg{
+   margin-left: 5px;
+   font-size: 1.3em;
+}
+.profileDetail > .editProfileImg{
+   align-self: flex-end;
+   margin-left: -20px;
+   margin-bottom: 8px;
+}
+.profileDetail > input[type=file]{
+   width: 17vw;
+}
+.profileDetail > .editNameForm{
+   margin-left: 3vw;
+}
+.profileDetail > .editNameForm > svg{
+   margin-left: 5px;
+   margin-bottom: -3px;
+}
+.profileDetail > .userName{
+   margin-left: 3vw;
+   font-size: 3em;
+   font-family: var(--name-font);
+   letter-spacing: .08em;
+   position: relative;
+}
+.userName > span{
+   position: relative;
+}
+.userName > span > .unfreindList{
+   position: absolute;
+   border: 1px solid grey;
+   background-color: white;
+   top: 25%;
+   left: 60%;
+}
+.userName > span > .unfreindList > div{
+   font-size: .7em;
+   padding: 5px;
+}
+.userName > span > .unfreindList div:first-child{
+   color: red;
+   border-bottom: 1px solid grey;
+}
+.userName > span > .unfreindList div:last-child{
+   color: black;
+
+}
+.profileDetail > .userName > svg{
+   width: .3em;
+   margin-left: 5px;
+}
+.profileDetail > .userName > .friendStatusBtn{
+   font-size: .4em;
+   margin-right: auto;
+   margin-top: 10px;
+   padding: 3px 6px;
+   border-radius: 8px;
+   letter-spacing: .05em;
+}
+.friendBtnBlue{
+   color: dodgerblue;
+   border: 1px solid;
+}
+.friendBtnGold{
+   color: goldenrod;
+   border: 1px solid;
+}
+.friendBtnGreen{
+   color: green;
+   border: 1px solid;
+}
+
+
+/* Lower section (with dark background) */
+
+.lowerSection{
+   min-height: 61.6vh;
+   background-color: #f7f7f7;
+   display: flex;
+   justify-content: center;
+   box-shadow: 0 1px 3px 0 lightgrey inset;
+}
+
+/* Parent container of all posts */
+.postContainer{
+   width: 40%;
+   margin-right: 1.1vw;
+}
+
+/* each post in post-container */
+.postContainer > div{
+   padding: 5px;
+   background-color: white;
+   border: 1px solid lightgrey;
+   border-radius: 5px;
+   box-shadow: 0 0 5px 0px lightgrey;
+}
+
+
+/* About section */
+
+.aboutSection{
+   margin-top: 2vh;
+}
+.aboutSection > .aboutHeader{
+   margin: 0;
+}
+.aboutSection > .aboutHeader > svg{
+   font-size: small;
+   margin-left: 3px;
+}
+.aboutSection > .description{
+   margin: 10px 0 0;
+}
+.aboutSection > .noBio{
+   margin: 10px 0 0;
+   color: grey;
+}
+
+
+/* Friends section (friends & friend requests) */
+.rightColContainer{
+   width: 23%;
+}
+.rightColContainer > *{
+   padding: 15px;
+   background-color: white;
+   border: 1px solid lightgrey;
+   border-radius: 5px;
+   box-shadow: 0 0 5px 0px lightgrey;
+}
+
+
+.noFriend > p{
+   margin: 8px 0 0;
+   font-size: .7em;
+}
+
+
+.darkBg{
+   background-color: lightgrey;
+}
+.colorGrey{
+   color: grey;
+}
+.flexColumn{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+.linkHover:hover{
+   cursor: pointer;
+}

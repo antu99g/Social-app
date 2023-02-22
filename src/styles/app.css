@@ -1,0 +1,15 @@
+:root{
+   --logo-pink: #FC5185;
+   --primary-blue: rgb(40, 177, 235);
+   --comment-color: rgb(27, 151, 27);
+   --like-btn-color: #362FD9;
+   --link-color: #364F6B;
+   --name-font: 'Ubuntu', sans-serif;
+   --login-color: #554994;
+}
+body{
+   font-family: 'Noto Sans', sans-serif;
+}
+.hover:hover{
+   cursor: pointer;
+}

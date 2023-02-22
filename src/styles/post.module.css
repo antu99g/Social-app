@@ -1,0 +1,271 @@
+.post{
+   margin: 2vh 0;
+   padding: 10px;
+   position: relative;
+}
+
+
+/* Buttons to edit and delete post*/
+
+.editPostBtns{
+   position: absolute;
+   top: 5px;
+   right: 5px;
+   display: flex;
+   flex-direction: column;
+}
+.editPostBtns > *{
+   margin: 2px;
+}
+
+/* Confirmation options on delete-post */
+.confirmDelete{
+   border: 1px solid grey;
+}
+.confirmDelete > p{
+   margin: 0;
+   padding: 2px;
+}
+.confirmDelete p:first-child{
+   color: red;
+   border-bottom: 1px solid grey;
+}
+
+
+/* Post Author image */
+.post > .postAuthorImg{
+   width: 40px;
+   margin-left: 10px;
+   margin-right: 10px;
+   border-radius: 50%;
+}
+
+
+/* Post author */
+.post > .postAuthor > h3{
+   /* margin: 0; */
+   margin: 5px 0 0;
+   font-family: var(--name-font);
+}
+.post > .postAuthor > small{
+   color: grey;
+}
+.post > .postAuthor{
+   display: inline-block;
+}
+
+
+/* Post content */
+.post > .postContent{
+   margin-top: 8px;
+   padding: 0 10px;
+}
+.post > .editPostText{
+   display: block;
+   margin: 10px;
+   width: 75%;
+   /* height: auto; */
+   /* resize: vertical; */
+}
+
+
+/* Image Section */
+.postImageContainer{
+   max-width: 100%;
+   padding: 15px 10px 0;
+   display: flex;
+   flex-wrap: wrap;
+   border-top: 1px solid lightgrey;
+}
+.postImageContainer img{
+   width: 100%;
+}
+.postImageContainer > .postImg{
+   width: 40%;
+   margin-bottom: 8px;
+}
+.postImageContainer > .editingPostImg{
+   position: relative;
+   margin-right: 10px;
+}
+.postImageContainer > .editingPostImg > img{
+   width: 50px;
+}
+.postImageContainer > .editingPostImg > svg{
+   position: absolute;
+   top: -5px;
+   right: -5px;
+   background-color: white;
+   border-radius: 50%;
+}
+.hiddenImgCount{
+   height: 100%;
+   width: 100%;   
+   position: absolute;
+   top: 0;
+   left: 0;
+   background-color: rgba(128, 128, 128, .9);
+   color: white;
+   font-size: 2.2em;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.hideImages{
+   width: 100%;
+   text-align: end;
+   color: rgb(9, 9, 252);
+   padding: 5px 0 0;
+}
+.hideImages > svg{
+   margin-bottom: -2px;
+}
+
+
+/* Images in a post */
+.postImageContainer{
+   margin: 5px 0;
+}
+
+
+/* Like and comment button */
+.postBtns{
+   width: 100%;
+   display: flex;
+   margin: 2vh 0;
+}
+.postBtns > span{
+   width: 50%;
+}
+/* Like button */
+.postBtns span:first-child{
+   border-top: 1px solid lightgrey;
+   border-right: 1px solid lightgrey;
+   text-align: center;
+   padding-top: 3px;
+   color: var(--like-btn-color);
+}
+/* Like icon */
+.postBtns span:first-child > svg{
+   margin-right: 2px;
+   font-size: 1.3em;
+}
+/* Comment button */
+.postBtns span:last-child{
+   text-align: center;
+   /* padding-bottom: 3px; */
+   border-bottom: 1px solid lightgrey;
+   padding-top: 1px;
+   color: darkslategrey;
+}
+/* Comment icon */
+.postBtns span:last-child > svg{
+   margin-left: 5px;
+   margin-bottom: -2px;
+   color: var(--comment-color);
+}
+
+
+/* Comment-section in each post */
+.comment .hideBtn{
+   text-align: end;
+   color: rgb(9, 9, 252);
+}
+.comment .hideBtn > svg{
+   margin-bottom: -2px;
+}
+
+
+/* Form to add comment */
+.commentForm{
+   margin-left: 1vw;
+   margin-bottom: 2vh;
+   border-radius: 8px;
+   display: flex;
+   /* align-items: center; */
+   padding: 0;
+   padding-left: 8px;
+   width: 36%;
+   border: 1px solid dodgerblue;
+   border-radius: 7px;
+}
+.commentForm > input{
+   width: 80%;
+   flex-grow: 1;
+   /* padding: 5px 0 6px; */
+   border: 0;
+   background-color: transparent;
+}
+.commentForm > input:focus{
+   outline: 0;
+}
+.commentForm > button{
+   margin: 0;
+   width: 20%;
+   background-color: dodgerblue;
+   border: 0;
+   /* padding: 3px 8px 3px 2px; */
+   padding: 5px;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+   overflow: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   /* border: 1px solid dodgerblue; */
+}
+.commentForm > button > svg{
+   background-color: dodgerblue;
+   color: white;
+   margin-left: -4px;
+   transform: rotate(45deg);
+   font-size: 1.4em;
+}
+
+
+/* Each comment */
+.singleComment{
+   padding: 1vh 2vw;
+   border-top: 1px solid lightgrey;
+}
+.singleComment img{
+   width: 25px;
+}
+.singleComment > div{
+   display: flex;
+   align-items: center;
+}
+.singleComment > div > span{
+   margin-left: 8px;
+}
+.singleComment > p{
+   margin: 5px 10px;
+   color: darkslategrey;
+}
+.noComment{
+   color: grey;
+   margin-left: 2vw;
+   margin-bottom: 10px;
+   font-size: 1.1em;
+}
+
+
+.blueBtn{
+   color: rgb(8, 110, 211);
+}
+.redBtn{
+   color: rgb(202, 33, 33);
+}
+.posRelative{
+   position: relative;
+}
+.spaceAround{
+   justify-content: space-around;
+}
+.darkBg{
+   background-color: rgba(211, 211, 211, .2);
+   box-shadow: 0 0 2px .5px lightgrey inset;
+}
+.hidden{
+   display: none;
+}

@@ -1,0 +1,71 @@
+.listContainer{
+   list-style-type: none;
+   margin: 3vh 0;
+}
+.listContainer > li{
+   /* padding: 10px; */
+   margin: 10px 0;
+}
+.listContainer > h2{
+   margin: 0 0 10px;
+}
+
+/* Image */
+.friendAvatar{
+   width: 35px;
+   border-radius: 5px;
+}
+/* User Name */
+.userdetail{
+   display: inline-block;
+   margin-left: 8px;
+}
+.userdetail > div{
+   font-size: 1.1em;
+}
+/* Buttons to add/remove friend or friend-request */
+.userdetail > span{
+   font-size: .8em;
+   padding: 2px;
+   border: 1px solid grey;
+   border-radius: 5px;
+   position: relative;
+   margin-right: 8px;
+}
+/* List to confirm unfriend */
+.userdetail > span > .unfreindList{
+   position: absolute;
+   border: 1px solid grey;
+   background-color: white;
+   top: 25%;
+   left: 60%;
+}
+.userdetail > span > .unfreindList > div{ 
+   padding: 5px;
+}
+.userdetail > span > .unfreindList div:first-child{
+   color: red;
+   border-bottom: 1px solid grey;
+}
+
+
+
+.greenBtn{
+   color: green;
+   border-color: green;
+}
+.redBtn{
+   color: red;
+   border-color: red;
+}
+
+.alignCenter{
+   display: flex;
+   align-items: center;
+}
+.darkBg {
+   background-color: lightgrey;
+}
+.flex{
+   display: flex;
+}
