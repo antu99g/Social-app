@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState, useRef } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { createPost, fetchAllFriends, fetchAllPosts, fetchAllUsers } from "../api";
 import { useHandleInput } from "../hooks";
@@ -141,7 +141,7 @@ function Home () {
                         let imageUrl = URL.createObjectURL(image);
                         return (
                            <div className={styles.previewImg} key={index}>
-                              <img src={imageUrl} alt="image" />
+                              <img src={imageUrl} alt="avatar" />
                               <FaTimesCircle
                                  onClick={() => removeImgFromPreview(index)}
                               />
