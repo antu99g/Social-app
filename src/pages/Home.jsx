@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks";
-import { createPost, fetchAllFriends, fetchAllPosts, fetchAllUsers } from "../api";
+import { createPost, fetchAllFriends, fetchAllPosts, fetchAllUsers, prefix } from "../api";
 import { useHandleInput } from "../hooks";
 import styles from '../styles/home.module.css';
 import {Post} from '../components';
@@ -100,7 +100,7 @@ function Home () {
                className={styles.profileLink}
             >
                <img
-                  src={`http://localhost:8000/${auth.user.avatar}`}
+                  src={`${prefix}/${auth.user.avatar}`}
                   alt="avatar"
                />
                {auth.user.username}
@@ -113,7 +113,7 @@ function Home () {
                      <li className={styles.friendHome} key={index}>
                         <Link to={`/profile/${friend.userid}`}>
                            <img
-                              src={`http://localhost:8000/${friend.avatar}`}
+                              src={`${prefix}/${friend.avatar}`}
                               alt="avatar"
                            />
                            {friend.username}
@@ -184,7 +184,7 @@ function Home () {
                   <li className={styles.userHome} key={index}>
                      <Link to={`/profile/${user.userid}`}>
                         <img
-                           src={`http://localhost:8000/${user.avatar}`}
+                           src={`${prefix}/${user.avatar}`}
                            alt="avatar"
                         />
                         {user.username}

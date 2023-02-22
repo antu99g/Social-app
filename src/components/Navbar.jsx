@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import styles from '../styles/navbar.module.css';
 import { useAuth } from '../hooks';
+import { prefix } from '../api';
 import { FiLogOut } from "react-icons/fi";
 
 export default function Navbar () {
@@ -15,7 +16,7 @@ export default function Navbar () {
 
             <Link to={`/profile/${auth.user.userid}`}>
                <img
-                  src={`http://localhost:8000/${auth.user.avatar}`}
+                  src={`${prefix}/${auth.user.avatar}`}
                   alt="avatar"
                />
                {auth.user.username}

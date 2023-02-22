@@ -1,4 +1,4 @@
-const prefix = "https://social-app-api-e3mz.onrender.com";
+export const prefix = "https://social-app-api-e3mz.onrender.com";
 
 
 // Function to call fetch api for different url with (authentication token)
@@ -138,11 +138,6 @@ export const createComment = async (postid, content) => {
 // Api call for sending friend request
 export const sendFriendReq = async (id, userid) => {
    try {
-      // const response = await fetch(
-      //    `http://localhost:8000/user/friend/add_request/${id}`,
-      //    { method: "POST", userid }
-      // );
-      // const json = await response.json();
       const response = await customFetch(`/user/friend/add_request/${id}`, {
          method: 'POST'
       });
@@ -173,8 +168,6 @@ export const removeFriendReq = async (id, self) => {
 // Api call for adding new friend
 export const addFriend = async (id) => {
    try {
-      // const response = await fetch(`http://localhost:8000/user/friend/add/${id}`, {method: 'POST'});
-      // const json = await response.json();
       const response = await customFetch(`/user/friend/add/${id}`, {method: 'POST'});
       return response;
    } catch (err) {
@@ -188,8 +181,6 @@ export const addFriend = async (id) => {
 // Api call for removing a friend
 export const removeFriend = async (id) => {
    try {
-      // const response = await fetch(`http://localhost:8000/user/friend/remove/${id}`, {method: 'POST'});
-      // const json = await response.json();
       const response = await customFetch(`/user/friend/remove/${id}`, {method: 'POST'});
       return response;
    } catch (err) {

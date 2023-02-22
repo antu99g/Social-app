@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { prefix } from "../api";
 import styles from "../styles/friendship.module.css";
 
 function FriendRequest({ requests, handleAddFriend, handleRemoveFriendReq }) {
@@ -12,7 +13,7 @@ function FriendRequest({ requests, handleAddFriend, handleRemoveFriendReq }) {
             return (
                <li key={index}>
                   <img
-                     src={`http://localhost:8000/${request.avatar}`}
+                     src={`${prefix}/${request.avatar}`}
                      className={styles.friendAvatar}
                      alt="avatar"
                   />

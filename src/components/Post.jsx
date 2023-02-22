@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import styles from '../styles/post.module.css';
 import { useHandleInput, useEditField, useToggleView } from "../hooks";
-import { createComment, handleLike, editPostDetails } from "../api";
+import { createComment, handleLike, editPostDetails, prefix } from "../api";
 import {
    FaCheck,
    FaTimes,
@@ -207,7 +207,7 @@ function Post({ post, self, handleDeletePost }) {
             ))}
 
          <img
-            src={`http://localhost:8000/${post.avatar}`}
+            src={`${prefix}/${post.avatar}`}
             alt="avatar"
             className={styles.postAuthorImg}
          />
@@ -239,7 +239,7 @@ function Post({ post, self, handleDeletePost }) {
                        return (
                           <div className={styles.editingPostImg}>
                              <img
-                                src={`http://localhost:8000/${imageUrl}`}
+                                src={`${prefix}/${imageUrl}`}
                                 loading="lazy"
                                 decoding="async"
                                 alt="avatar"
@@ -266,7 +266,7 @@ function Post({ post, self, handleDeletePost }) {
                              key={index}
                           >
                              <img
-                                src={`http://localhost:8000/${imageUrl}`}
+                                src={`${prefix}/${imageUrl}`}
                                 loading="lazy"
                                 decoding="async"
                                 alt="avatar"
@@ -342,7 +342,7 @@ function Post({ post, self, handleDeletePost }) {
                         <div className={styles.singleComment} key={i}>
                            <div>
                               <img
-                                 src={`http://localhost:8000/${comment.avatar}`}
+                                 src={`${prefix}/${comment.avatar}`}
                                  alt="avatar"
                               />
                               <span>{comment.author}</span>

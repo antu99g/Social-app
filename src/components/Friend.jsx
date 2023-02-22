@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { removeFriend } from "../api";
+import { removeFriend, prefix } from "../api";
 import styles from '../styles/friendship.module.css';
 import { useToggleView } from "../hooks";
 
@@ -21,7 +21,7 @@ function Friend({ friends, self }) {
             return (
                <li className={`${!self && styles.alignCenter}`} key={index}>
                   <img
-                     src={`http://localhost:8000/${friend.avatar}`}
+                     src={`${prefix}/${friend.avatar}`}
                      className={styles.friendAvatar}
                      alt="avatar"
                   />

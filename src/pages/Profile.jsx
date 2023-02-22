@@ -12,7 +12,8 @@ import {
    removeFriend,
    updateUserData,
    deletePost,
-   addFriend   
+   addFriend,
+   prefix,
 } from "../api";
 import { FaArrowLeft, FaPencilAlt, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -257,7 +258,7 @@ function Profile () {
                ) : (
                   <>
                      <img
-                        src={`http://localhost:8000/${user.avatar}`}
+                        src={`${prefix}/${user.avatar}`}
                         alt="avatar"
                         className={styles.profileImg}
                      />
