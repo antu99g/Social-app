@@ -34,4 +34,4 @@ Visit site: [Social App](https://social-app-325a11.netlify.app)
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/114740896/220888054-7aee6192-d675-4d49-afa5-792fdd819e18.png" alt="screenshot" height="200" width="380">&ensp;<img src="https://user-images.githubusercontent.com/114740896/220888166-f6515017-6695-4b7e-a142-d9310dfb028f.png" alt="screenshot" height="200" width="380">
+<img src="https://user-images.githubusercontent.com/114740896/220888054-7aee6192-d675-4d49-afa5-792fdd819e18.png" alt="screenshot" height="200" width="380">&emsp;&emsp;<img src="https://user-images.githubusercontent.com/114740896/220888166-f6515017-6695-4b7e-a142-d9310dfb028f.png" alt="screenshot" height="200" width="380">
