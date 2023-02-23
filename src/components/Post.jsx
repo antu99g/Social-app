@@ -237,12 +237,12 @@ function Post({ post, self, handleDeletePost }) {
                {editingPost
                   ? imagesToEdit.map((imageUrl, index) => {
                        return (
-                          <div className={styles.editingPostImg}>
+                          <div className={styles.editingPostImg} key={index}>
                              <img
                                 src={`${prefix}/${imageUrl}`}
                                 loading="lazy"
                                 decoding="async"
-                                alt="avatar"
+                                alt="postImage"
                              />
 
                              <FaTimesCircle
@@ -269,7 +269,7 @@ function Post({ post, self, handleDeletePost }) {
                                 src={`${prefix}/${imageUrl}`}
                                 loading="lazy"
                                 decoding="async"
-                                alt="avatar"
+                                alt="postImage"
                              />
 
                              {index === 3 &&

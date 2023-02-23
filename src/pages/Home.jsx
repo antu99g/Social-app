@@ -49,7 +49,7 @@ function Home () {
 
 
    // Function to add new post
-   const handleSubmit = async (e) => {
+   const handleAddNewPost = async (e) => {
       e.preventDefault();
 
       if (images.length > 0 || content.value !== "") {
@@ -59,7 +59,6 @@ function Home () {
                formData.append("images", i);
             }
          }
-
          formData.append("content", content.value);
 
          const response = await createPost(formData);
@@ -127,7 +126,7 @@ function Home () {
          </ul>
 
          <div className={styles.center}>
-            <form onSubmit={handleSubmit} className={styles.newPost}>
+            <form onSubmit={handleAddNewPost} className={styles.newPost}>
                <input
                   type="text"
                   name="content"

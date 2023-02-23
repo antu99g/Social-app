@@ -49,16 +49,26 @@ export const AuthProvider = ({ children }) => {
    };
 
 
-   // Function for editing username of logged user (globally)
+   // Function for editing username and avatar of logged user (globally)
    const editUsername = async (data) => {
       let newUserData = {};
       if(data.username){
          const res = await updateUserData(data);
-         newUserData = {...user, username: res.data.username};
+         if (res.success) {
+            newUserData = {...user, username: res.data.username};
+            toast.success("Username edited");
+         } else {
+            toast.error("Error in editing username");
+         }
       }
       else if (data) {
          const res = await updateUserImage(data);
-         newUserData = {...user, avatar: res.data.avatar};
+         if (res.success) {
+            newUserData = {...user, avatar: res.data.avatar};
+            toast.success("Profile image edited");
+         } else {
+            toast.error("Error in editing profile image");
+         }
       }
       localStorage.setItem("USER_DATA", JSON.stringify(newUserData));
       setUser(newUserData);

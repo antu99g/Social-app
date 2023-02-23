@@ -134,11 +134,6 @@ function Profile () {
       } else {
          const response = await auth.editUsername({ username: editName.value });
          setUser({ ...user, username: response.username });
-         if (response.success) {
-            toast.success("User name edited");
-         } else {
-            toast.error("Error in editing username");
-         }
       }
    };
    
@@ -169,13 +164,7 @@ function Profile () {
          const response = await auth.editUsername(formData); 
 
          setUser({ ...user, avatar: response.avatar });
-         editProfileImg.toggleView(false); // hiding the input to upload image
-
-         if (response.success) {
-            toast.success("Profile image edited");
-         } else {
-            toast.error("Error in editing profile image");
-         }
+         editProfileImg.toggleView(false); // hiding the input to upload image         
       } else {
          editProfileImg.toggleView(false);
          toast.warning("Please select an image");
