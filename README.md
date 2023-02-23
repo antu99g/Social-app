@@ -27,6 +27,7 @@ To run this project, run the following command
 - Send friend request to any user
 - Remove someone from your friends
 - You can see profile and posts of any user
+
 ## Hosted Link
 
 Visit site: [Social App](https://social-app-325a11.netlify.app)
