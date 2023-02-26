@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../contextProviders/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
 
 // Custom hook to provide authentication (using context api)
 export const useAuth = () => {
