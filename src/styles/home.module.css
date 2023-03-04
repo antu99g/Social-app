@@ -60,7 +60,7 @@
 .center::-webkit-scrollbar {
    width: 0 !important;
 }
-.center > *{
+.center > form, .center > div{
    background-color: white;
    border: 1px solid lightgrey;
    border-radius: 5px;
@@ -131,6 +131,9 @@
 .newPost > .newPostBtns > button > svg{
    margin-right: 5px;
    margin-bottom: -2px;
+}
+.newPost > .newPostBtns > button:active{
+   transform: scaleX(.95);
 }
 
 

@@ -1,18 +1,19 @@
+import { useRef } from 'react';
 import styles from '../styles/loginSignup.module.css';
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import {signup} from '../api';
-import { useHandleInput, useAuth } from '../hooks';
+import { useAuth } from '../hooks';
 import { toast } from "react-toastify";
 
 
 function Signup () {
-   const email = useHandleInput(); // collecting email from input
+   const emailRef = useRef(); // collecting email from input
 
-   const username = useHandleInput(); // collecting username from input
+   const usernameRef = useRef(); // collecting username from input
 
-   const password = useHandleInput(); // collecting password from input
+   const passwordRef = useRef(); // collecting password from input
 
-   const cPassword = useHandleInput(); // collecting confirm-password from input
+   const cPasswordRef = useRef(); // collecting confirm-password from input
 
    const auth = useAuth(); // data of logged user (using context api)
 
@@ -22,12 +23,12 @@ function Signup () {
    // Function for sign-up a new user
    const handleFormSubmit = async (e) => {
       e.preventDefault();
-      if (cPassword.value !== password.value) { // if password doesn't match with confirm-password
+      if (cPasswordRef.current.value !== passwordRef.current.value) { // if password doesn't match with confirm-password
          e.target.reset();
          toast.error("Error in username/password");
          return;
       } else {
-         await signup(email.value, username.value, password.value);
+         await signup(emailRef.current.value, usernameRef.current.value, passwordRef.current.value);
          toast.success('New user created!');
          navigate("/login");
       }
@@ -52,30 +53,30 @@ function Signup () {
             <p>Email</p>
             <input
                type="email"
+               ref={emailRef}
                placeholder="Your email"
-               onChange={({ target }) => {email.handleChange(target.value)}}
                required
             />
             <p>Username</p>
             <input
                type="text"
+               ref={usernameRef}
                placeholder="Your name"
-               onChange={({ target }) => {username.handleChange(target.value)}}
                required
             />
             <p>Password</p>
             <input
                type="password"
+               ref={passwordRef}
                placeholder="Password..."
-               onChange={({ target }) => {password.handleChange(target.value)}}
                required
             />
             <p>Confirm Password</p>
             <input
                type="password"
                name="confirmpassword"
+               ref={cPasswordRef}
                placeholder="Confirm..."
-               onChange={({ target }) => {cPassword.handleChange(target.value)}}
                required
             />
 

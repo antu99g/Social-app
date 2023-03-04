@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styles from '../styles/post.module.css';
-import { useHandleInput, useEditField, useToggleView } from "../hooks";
+import { useEditField, useToggleView } from "../hooks";
 import { createComment, handleLike, editPostDetails, prefix } from "../api";
 import {
    FaCheck,
@@ -37,7 +37,7 @@ function Post({ post, self, handleDeletePost }) {
 
    const textareaRef = useRef(); // reference of textarea to change text content
 
-   const comment = useHandleInput(); // form to add new comment
+   const commentRef = useRef(); // form to add new comment
 
    const editPost = useEditField(post.content); // custom hook for editing a post
 
@@ -47,7 +47,6 @@ function Post({ post, self, handleDeletePost }) {
 
    useEffect(() => {
       if (editingPost) {
-
          // Setting initial dimention of field to change text content
          let reqRows = textareaRef.current.scrollHeight / 17.25;
          if (!Number.isInteger(reqRows)) {
@@ -123,10 +122,10 @@ function Post({ post, self, handleDeletePost }) {
    // Function for adding new comment
    const handleAddComment = async (e) => {
       e.preventDefault();
-      if (comment.value === "") {
+      if (commentRef.current.value === "") {
          toast.warning("Add text to comment");
       } else {
-         const response = await createComment(post.postid, comment.value);
+         const response = await createComment(post.postid, commentRef.current.value);
 
          // Adding new comment to state
          setComments([
@@ -185,8 +184,9 @@ function Post({ post, self, handleDeletePost }) {
                   {confirmDelete ? (
                      <small className={styles.confirmDelete}>
                         <p
-                           onClick={() => {
+                           onClick={({target}) => {
                               setConfirmDelete(false);
+                              target.parentElement.parentElement.parentElement.remove();
                               handleDeletePost(post.postid);
                            }}
                         >
@@ -325,9 +325,7 @@ function Post({ post, self, handleDeletePost }) {
                <form onSubmit={handleAddComment} className={styles.commentForm}>
                   <input
                      type="text"
-                     onChange={({ target }) =>
-                        comment.handleChange(target.value)
-                     }
+                     ref={commentRef}
                      placeholder="comment..."
                   />
 

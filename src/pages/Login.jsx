@@ -1,12 +1,13 @@
+import { useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { useHandleInput, useAuth } from "../hooks";
+import { useAuth } from "../hooks";
 import styles from '../styles/loginSignup.module.css';
 
 
 function Login () {
-   const email = useHandleInput(); // collecting email from input
+   const emailRef = useRef(); // collecting email from input
 
-   const password = useHandleInput(); // collecting password from input
+   const passwordRef = useRef(); // collecting password from input
 
    const auth = useAuth(); // data of logged user (using context api)
 
@@ -14,7 +15,7 @@ function Login () {
    // Function for logging-in
    const handleFormSubmit = async (e) => {
       e.preventDefault();
-      auth.login(email.value, password.value); // function present in context api
+      auth.login(emailRef.current.value, passwordRef.current.value); // function present in context api
       e.target.reset();
    };
 
@@ -35,14 +36,14 @@ function Login () {
             <p>Email</p>
             <input
                type="email"
-               onChange={({ target }) => email.handleChange(target.value)}
+               ref={emailRef}
                placeholder="Your email"
                required
             />
             <p>Password</p>
             <input
                type="password"
-               onChange={({ target }) => password.handleChange(target.value)}
+               ref={passwordRef}
                placeholder="Password..."
                required
             />

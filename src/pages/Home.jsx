@@ -2,12 +2,13 @@ import { useLayoutEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { createPost, fetchAllFriends, fetchAllPosts, fetchAllUsers, prefix } from "../api";
-import { useHandleInput } from "../hooks";
 import styles from '../styles/home.module.css';
 import {Post} from '../components';
 import { FaTimesCircle, FaTelegramPlane } from "react-icons/fa";
 import { FiImage } from "react-icons/fi";
+import {Loader} from "../components";
 import {toast} from "react-toastify";
+import { useEffect } from "react";
 
 function Home () {
    const [friendsList, setFriendsList] = useState([]); // list of all friends
@@ -20,11 +21,13 @@ function Home () {
 
    const [width, setWidth] = useState(); // matching width of two buttons to add post
 
+   const [loading, setLoading] = useState(postsList.length<1); // matching width of two buttons to add post
+
    const widthRef = useRef(); // reference of button to addimage
 
    const auth = useAuth(); // data of logged user (using context api)
 
-   const content = useHandleInput(); // text content of new post
+   const newContent = useRef(); // text content of new post
 
 
 
@@ -32,41 +35,54 @@ function Home () {
       (async () => {
          // Fetching all friends (api call)
          const friendResponse = await fetchAllFriends();
-         setFriendsList(friendResponse.data);
+         setFriendsList(() => friendResponse.data);
 
          // Fetching all posts (api call)
          const postResponse = await fetchAllPosts();
-         setPostsList(postResponse.data);
+         setPostsList(() => postResponse.data);
 
          // Fetching all users (api call)
          const userResponse = await fetchAllUsers();
-         setUsersList(userResponse.data);
+         setUsersList(() => userResponse.data);
       })();
 
       // Matching width of two buttons in form to add-post
       setWidth(widthRef.current.offsetWidth);
    }, []);
 
+   
+   useEffect(() => {
+      if (postsList.length < 1) {
+         setLoading(true);
+      } else {
+         setLoading(false);
+      }
+   }, [postsList]);
+
 
    // Function to add new post
    const handleAddNewPost = async (e) => {
       e.preventDefault();
-
-      if (images.length > 0 || content.value !== "") {
+      if (images.length > 0 || newContent.current.value !== "") {
+         const postContent = newContent.current.value;
          const formData = new FormData();
-         if (images.length > 0) { // add images (in form) if uploaded by user
+         if (images.length > 0) {
+            // add images (in form) if uploaded by user
             for (let i of images) {
                formData.append("images", i);
             }
          }
-         formData.append("content", content.value);
+         formData.append("content", postContent);
 
          const response = await createPost(formData);
          setImages([]);
-         content.handleChange("");
 
-         let newPostList = [response.data, ...postsList]; // adding new post to state
-         setPostsList(newPostList);
+
+
+         // let newPostList = [response.data, ...postsList];
+         // console.log("post images", response.data.images);
+         setPostsList((posts) => [response.data, ...posts]); // adding new post to state
+         // console.log("0th images", postsList[0].images.length);
 
          e.target.reset();
          if (response.success) {
@@ -98,10 +114,7 @@ function Home () {
                to={`/profile/${auth.user.userid}`}
                className={styles.profileLink}
             >
-               <img
-                  src={`${prefix}/${auth.user.avatar}`}
-                  alt="avatar"
-               />
+               <img src={`${prefix}/${auth.user.avatar}`} alt="avatar" />
                {auth.user.username}
             </Link>
 
@@ -129,8 +142,7 @@ function Home () {
             <form onSubmit={handleAddNewPost} className={styles.newPost}>
                <input
                   type="text"
-                  name="content"
-                  onChange={({ target }) => content.handleChange(target.value)}
+                  ref={newContent}
                   placeholder="What's in your mind.."
                />
 
@@ -171,9 +183,14 @@ function Home () {
                </div>
             </form>
 
-            {postsList.map((post, index) => {
-               return <Post post={post} key={index} />;
-            })}
+            {loading ? (
+               <Loader text={'posts'} />
+            ) : (
+               postsList.map((post, index) => {
+                  return <Post post={post} key={index} />;
+               })
+            )}
+
          </div>
 
          <ul className={styles.right}>
@@ -182,10 +199,7 @@ function Home () {
                return (
                   <li className={styles.userHome} key={index}>
                      <Link to={`/profile/${user.userid}`}>
-                        <img
-                           src={`${prefix}/${user.avatar}`}
-                           alt="avatar"
-                        />
+                        <img src={`${prefix}/${user.avatar}`} alt="avatar" />
                         {user.username}
                      </Link>
                   </li>
