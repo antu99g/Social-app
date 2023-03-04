@@ -132,7 +132,7 @@ function Profile () {
       if (editName.value === "") {
          toast.warning("Add text to edit username");
       } else {
-         const response = await auth.editUsername({ username: editName.value });
+         const response = await auth.editUserData({ username: editName.value });
          setUser({ ...user, username: response.username });
       }
    };
@@ -161,7 +161,7 @@ function Profile () {
       if(image){ // if the user uploaded an image
          const formData = new FormData();
          formData.append("avatar", image);
-         const response = await auth.editUsername(formData); 
+         const response = await auth.editUserData(formData); 
 
          setUser({ ...user, avatar: response.avatar });
          editProfileImg.toggleView(false); // hiding the input to upload image         

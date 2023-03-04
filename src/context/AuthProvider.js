@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
 
    // Function for editing username and avatar of logged user (globally)
-   const editUsername = async (data) => {
+   const editUserData = async (data) => {
       let newUserData = {};
       if(data.username){
          const res = await updateUserData(data);
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
    };
    
 
-   const utils = { user, login, logout, editUsername };
+   const utils = { user, login, logout, editUserData };
 
    return (
       <AuthContext.Provider value={utils}>
