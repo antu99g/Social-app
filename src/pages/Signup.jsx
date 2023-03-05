@@ -37,7 +37,6 @@ function Signup () {
 
    // Navigate to homepage if user already logged-in
    if (auth.user) {
-      toast.info("Logged in already");
       return <Navigate to="/" />;
    }
 
