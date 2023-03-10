@@ -95,7 +95,7 @@ function Profile () {
          setFriendship("false");
 
          if (response.success) {
-            toast("Friend removed");
+            toast.warn("Friend removed", {icon: false});
          } else {
             toast.error("Error in removing friend");
          }
@@ -117,7 +117,7 @@ function Profile () {
          setFriendship("false");
 
          if (response.success) {
-            toast("Friend request removed");
+            toast.warn("Friend request removed", {icon: false});
          } else {
             toast.error("Error in removing friend request");
          }
@@ -177,11 +177,11 @@ function Profile () {
       const response = await deletePost(postid);
 
       // Removing deleted post from state
-      const newPostList = postsList.filter((post) => post.postid !== postid);
-      setPostsList(newPostList);
+      // const newPostList = postsList.filter((post) => post.postid !== postid);
+      // setPostsList(newPostList);
 
       if (response.success) {
-         toast("Post deleted successfully");
+         toast.warn("Post deleted successfully", {icon: false});
       } else {
          toast.error("Error in deleting post");
       }
@@ -215,7 +215,7 @@ function Profile () {
       setFriendship('false');
       
       if (response.success) {
-         toast("Friend request removed");
+         toast.warn("Friend request removed", {icon: false});
       } else {
          toast.error("Error in removing request");
       }

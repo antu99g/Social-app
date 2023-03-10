@@ -76,14 +76,12 @@ function Home () {
 
          const response = await createPost(formData);
          setImages([]);
-
-
-
-         // let newPostList = [response.data, ...postsList];
-         // console.log("post images", response.data.images);
-         setPostsList((posts) => [response.data, ...posts]); // adding new post to state
-         // console.log("0th images", postsList[0].images.length);
-
+         
+         // setPostsList((posts) => [response.data, ...posts]); // adding new post to state
+         const center = document.getElementById("centerContainer").children[1];
+         // center.insertBefore(<Post post={response.data}/>, center.children[1]);
+         center.insertAdjacentElement("beforebegin", <Post post={response.data}/>);
+         console.log(center);
          e.target.reset();
          if (response.success) {
             toast.success("New post added");
@@ -138,7 +136,7 @@ function Home () {
             )}
          </ul>
 
-         <div className={styles.center}>
+         <div className={styles.center} id='centerContainer'>
             <form onSubmit={handleAddNewPost} className={styles.newPost}>
                <input
                   type="text"

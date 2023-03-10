@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem('TOKEN_KEY');
       localStorage.removeItem('USER_DATA');
       setUser(null);
-      toast('Logged out!')
+      toast.warn('Logged out!', {icon: false})
    };
 
 
