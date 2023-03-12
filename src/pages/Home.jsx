@@ -11,9 +11,9 @@ import {toast} from "react-toastify";
 import { useEffect } from "react";
 
 function Home () {
-   const [friendsList, setFriendsList] = useState([]); // list of all friends
-
    const [postsList, setPostsList] = useState([]); // list of all posts
+
+   const [friendsList, setFriendsList] = useState([]); // list of all friends
 
    const [usersList, setUsersList] = useState([]); // list of all users
 
@@ -35,15 +35,15 @@ function Home () {
       (async () => {
          // Fetching all friends (api call)
          const friendResponse = await fetchAllFriends();
-         setFriendsList(() => friendResponse.data);
+         setFriendsList((list) => friendResponse.data);
 
          // Fetching all posts (api call)
          const postResponse = await fetchAllPosts();
-         setPostsList(() => postResponse.data);
+         setPostsList((list) => postResponse.data);
 
          // Fetching all users (api call)
          const userResponse = await fetchAllUsers();
-         setUsersList(() => userResponse.data);
+         setUsersList((list) => userResponse.data);
       })();
 
       // Matching width of two buttons in form to add-post
@@ -78,10 +78,10 @@ function Home () {
          setImages([]);
          
          // setPostsList((posts) => [response.data, ...posts]); // adding new post to state
-         const center = document.getElementById("centerContainer").children[1];
+         // const center = document.getElementById("centerContainer").children[1];
          // center.insertBefore(<Post post={response.data}/>, center.children[1]);
-         center.insertAdjacentElement("beforebegin", <Post post={response.data}/>);
-         console.log(center);
+         // center.insertAdjacentElement("beforebegin", <Post post={response.data}/>);
+         // console.log(center);
          e.target.reset();
          if (response.success) {
             toast.success("New post added");
