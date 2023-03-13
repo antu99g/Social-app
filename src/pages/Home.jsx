@@ -1,6 +1,6 @@
-import { useLayoutEffect, useState, useRef } from "react";
+import { useLayoutEffect, useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hooks";
+import { useAuth, useForceUpdate } from "../hooks";
 import { createPost, fetchAllFriends, fetchAllPosts, fetchAllUsers, prefix } from "../api";
 import styles from '../styles/home.module.css';
 import {Post} from '../components';
@@ -8,7 +8,6 @@ import { FaTimesCircle, FaTelegramPlane } from "react-icons/fa";
 import { FiImage } from "react-icons/fi";
 import {Loader} from "../components";
 import {toast} from "react-toastify";
-import { useEffect } from "react";
 
 function Home () {
    const [postsList, setPostsList] = useState([]); // list of all posts
@@ -29,25 +28,29 @@ function Home () {
 
    const newContent = useRef(); // text content of new post
 
+   const forceUpdate = useForceUpdate();
+
 
 
    useLayoutEffect(() => {
-      (async () => {
-         // Fetching all friends (api call)
-         const friendResponse = await fetchAllFriends();
-         setFriendsList((list) => friendResponse.data);
-
-         // Fetching all posts (api call)
-         const postResponse = await fetchAllPosts();
-         setPostsList((list) => postResponse.data);
-
-         // Fetching all users (api call)
-         const userResponse = await fetchAllUsers();
-         setUsersList((list) => userResponse.data);
-      })();
-
+      // console.log('rendered');
       // Matching width of two buttons in form to add-post
       setWidth(widthRef.current.offsetWidth);
+
+      // Fetching all friends (api call)
+      fetchAllFriends()
+      .then((res) => setFriendsList((list) => res.data))
+      .catch((err) => {console.log(err);})
+
+      // Fetching all users (api call)
+      fetchAllUsers()
+      .then((res) => setUsersList((list) => res.data))
+      .catch((err) => {console.log(err);})
+
+      // Fetching all posts (api call)
+      fetchAllPosts()
+      .then((res) => setPostsList((list) => res.data))
+      .catch((err) => {console.log(err);})
    }, []);
 
    
@@ -77,7 +80,7 @@ function Home () {
          const response = await createPost(formData);
          setImages([]);
          
-         // setPostsList((posts) => [response.data, ...posts]); // adding new post to state
+         setPostsList((posts) => [response.data, ...posts]); // adding new post to state
          // const center = document.getElementById("centerContainer").children[1];
          // center.insertBefore(<Post post={response.data}/>, center.children[1]);
          // center.insertAdjacentElement("beforebegin", <Post post={response.data}/>);
@@ -85,6 +88,7 @@ function Home () {
          e.target.reset();
          if (response.success) {
             toast.success("New post added");
+            forceUpdate();
          } else {
             toast.error("Failed to add post");
          }
