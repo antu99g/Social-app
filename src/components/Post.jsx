@@ -61,8 +61,12 @@ function Post({ post, self, handleDeletePost }) {
 
 
    useEffect(() => {
-      setContent(post.content); // changing state for text-content
-   }, [post.content]);
+      setContent(post.content);
+      setImages(post.images);
+      setLikes(post.likes);
+      setLiked(post.liked);
+      setComments(post.comments);
+   }, [post.content, post.images, post.likes, post.liked, post.comments]);
 
 
    // Function to handle like button click

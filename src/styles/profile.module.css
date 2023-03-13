@@ -134,6 +134,13 @@
    border-radius: 5px;
    box-shadow: 0 0 5px 0px lightgrey;
 }
+.noPost{
+   text-align: center;
+   color: grey;
+   margin-top: 18vh;
+   letter-spacing: .05em;
+   word-spacing: .1em;
+}
 
 
 /* About section */
@@ -170,6 +177,7 @@
 }
 
 
+/* if there is no friend */
 .noFriend > p{
    margin: 8px 0 0;
    font-size: .7em;

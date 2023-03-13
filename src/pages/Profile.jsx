@@ -26,17 +26,17 @@ function Profile () {
 
    const [friends, setFriends] = useState([]); // all friends
 
-   const [self, setSelf] = useState(false); // if seeing own profile or not
-
-   const [friendship, setFriendship] = useState(''); // friendship status with logged user
+   const [friendship, setFriendship] = useState(""); // friendship status with logged user
 
    const [image, setImage] = useState(null); // used for changing profile image
 
-   const [loading, setLoading] = useState(true);
+   const [loading, setLoading] = useState(true); // if posts are loading
 
    const auth = useAuth(); // details of logged user (from context api)
 
    const userId = useParams().id; // id of current user
+
+   const self = auth.user.userid === userId; // if seeing own profile or not
 
    const editName = useEditField(); // custom hook for editing username
 
@@ -46,13 +46,7 @@ function Profile () {
 
    const unfriendForm = useToggleView(); // custom hook for confirmation before unfriend
 
-
    useLayoutEffect(() => {
-      // Checking if own profile or not
-      if (auth.user.userid === userId) {
-         setSelf(true);
-      }
-
       (async () => {
          // Fetching all users
          const detailResponse = await fetchUserDetails(userId);
@@ -62,34 +56,32 @@ function Profile () {
          // Setting friendship status (when seeing others profile)
          if (!self) {
             checkFriendship(detailResponse.data);
-         }         
-   
+         }
+
          // Fetching all posts
          const postResponse = await fetchPosts(userId);
          setPostsList(postResponse.data);
          setLoading(false);
       })();
-   }, []);
-
+   }, [userId]);
 
    // Function to check friendship status with user (if not self)
    const checkFriendship = (user) => {
-      for(let friend of user.friends){
-         if(friend.userid === auth.user.userid){
-            setFriendship('true');
+      for (let friend of user.friends) {
+         if (friend.userid === auth.user.userid) {
+            setFriendship("true");
             return;
          }
       }
       for (let request of user.requests) {
-         if(request.userid === auth.user.userid){
+         if (request.userid === auth.user.userid) {
             setFriendship("pending");
             return;
          }
       }
       setFriendship("false");
    };
-      
-   
+
    // Function to handle click for all friendship statuses
    const handleFriendBtnClick = async () => {
       // If user is already a friend (will unfriend)
@@ -98,7 +90,7 @@ function Profile () {
          setFriendship("false");
 
          if (response.success) {
-            toast.warn("Friend removed", {icon: false});
+            toast.warn("Friend removed", { icon: false });
          } else {
             toast.error("Error in removing friend");
          }
@@ -120,13 +112,12 @@ function Profile () {
          setFriendship("false");
 
          if (response.success) {
-            toast.warn("Friend request removed", {icon: false});
+            toast.warn("Friend request removed", { icon: false });
          } else {
             toast.error("Error in removing friend request");
          }
       }
    };
-
 
    // Function for editing name of user
    const handleEditName = async (e) => {
@@ -139,13 +130,12 @@ function Profile () {
          setUser({ ...user, username: response.username });
       }
    };
-   
-   
+
    // Function for editing about section
    const handleEditBio = async (e) => {
       e.preventDefault();
       editBio.toggleInput();
-      if(editBio.value===''){
+      if (editBio.value === "") {
          toast.warning("Add text to edit bio");
       } else {
          const response = await updateUserData({ description: editBio.value });
@@ -158,23 +148,22 @@ function Profile () {
       }
    };
 
-
    // Function for editing profile image
    const handleEditProfileImg = async () => {
-      if(image){ // if the user uploaded an image
+      if (image) {
+         // if the user uploaded an image
          const formData = new FormData();
          formData.append("avatar", image);
-         const response = await auth.editUserData(formData); 
+         const response = await auth.editUserData(formData);
 
          setUser({ ...user, avatar: response.avatar });
-         editProfileImg.toggleView(false); // hiding the input to upload image         
+         editProfileImg.toggleView(false); // hiding the input to upload image
       } else {
          editProfileImg.toggleView(false);
          toast.warning("Please select an image");
       }
    };
 
-   
    // Function for deleting a post
    const handleDeletePost = async (postid) => {
       const response = await deletePost(postid);
@@ -184,12 +173,11 @@ function Profile () {
       // setPostsList(newPostList);
 
       if (response.success) {
-         toast.warn("Post deleted successfully", {icon: false});
+         toast.warn("Post deleted successfully", { icon: false });
       } else {
          toast.error("Error in deleting post");
       }
    };
-
 
    // Function for adding a friend (from friend request)
    const handleAddFriend = async (userid, username, avatar) => {
@@ -199,7 +187,7 @@ function Profile () {
       setFriendship("true");
 
       // Add new friend in state
-      const newFreinds = [...friends, { userid, username, avatar }];        
+      const newFreinds = [...friends, { userid, username, avatar }];
       setFriends(newFreinds);
 
       if (response.success) {
@@ -209,22 +197,19 @@ function Profile () {
       }
    };
 
-
    // Function for removing a friend (from friend request)
    const handleRemoveFriendReq = async (userid) => {
       const response = await removeFriendReq(userid, self);
-      
+
       // Changing friendship status with user
-      setFriendship('false');
-      
+      setFriendship("false");
+
       if (response.success) {
-         toast.warn("Friend request removed", {icon: false});
+         toast.warn("Friend request removed", { icon: false });
       } else {
          toast.error("Error in removing request");
       }
    };
-
-
 
    return (
       <div className={styles.profilePage}>
@@ -233,71 +218,74 @@ function Profile () {
          </Link>
 
          <div className={styles.profileDetail}>
-            {user && <>
-               {editProfileImg.view ? (
-                  <>
-                     <input
-                        type="file"
-                        onChange={(e) => setImage(e.target.files[0])}
-                        accept="image/*"
-                     />
-                     <button onClick={handleEditProfileImg}>Upload</button>
-                     <FaTimes
-                        onClick={() => editProfileImg.toggleView(false)}
-                        className={styles.cancelEditProfileImg}
-                     />
-                  </>
-               ) : (
-                  <>
-                     <img
-                        src={`${prefix}/${user.avatar}`}
-                        alt="avatar"
-                        className={styles.profileImg}
-                     />
-                     {self && (
-                        <FaPencilAlt
-                           onClick={() => editProfileImg.toggleView(true)}
-                           className={styles.editProfileImg}
-                        />
-                     )}
-                  </>
-               )}
-
-               {self ? (
-                  editName.showInput ? (
-                     <form
-                        onSubmit={handleEditName}
-                        className={styles.editNameForm}
-                     >
+            {user && (
+               <>
+                  {editProfileImg.view ? (
+                     <>
                         <input
-                           type="text"
-                           onChange={({ target }) =>
-                              editName.handleChange(target.value)
-                           }
-                           defaultValue={user.username}
+                           type="file"
+                           onChange={(e) => setImage(e.target.files[0])}
+                           accept="image/*"
                         />
-                        <button type="submit">Edit</button>
-                        <FaTimes onClick={() => editName.toggleInput(false)} />
-                     </form>
+                        <button onClick={handleEditProfileImg}>Upload</button>
+                        <FaTimes
+                           onClick={() => editProfileImg.toggleView(false)}
+                           className={styles.cancelEditProfileImg}
+                        />
+                     </>
                   ) : (
-                     <h1 className={styles.userName}>
-                        {user.username}
-                        <FaPencilAlt
-                           onClick={() => editName.toggleInput(true)}
+                     <>
+                        <img
+                           src={`${prefix}/${user.avatar}`}
+                           alt="avatar"
+                           className={styles.profileImg}
                         />
-                     </h1>
-                  )
-               ) : (
-                  <h1 className={`${styles.userName} ${styles.flexColumn}`}>
-                     <div>{user.username}</div>
-                     <span
-                        onClick={() => {
-                           unfriendForm.toggleView();
-                           if (friendship !== "true") {
-                              handleFriendBtnClick();
-                           }
-                        }}
-                        className={`
+                        {self && (
+                           <FaPencilAlt
+                              onClick={() => editProfileImg.toggleView(true)}
+                              className={styles.editProfileImg}
+                           />
+                        )}
+                     </>
+                  )}
+
+                  {self ? (
+                     editName.showInput ? (
+                        <form
+                           onSubmit={handleEditName}
+                           className={styles.editNameForm}
+                        >
+                           <input
+                              type="text"
+                              onChange={({ target }) =>
+                                 editName.handleChange(target.value)
+                              }
+                              defaultValue={user.username}
+                           />
+                           <button type="submit">Edit</button>
+                           <FaTimes
+                              onClick={() => editName.toggleInput(false)}
+                           />
+                        </form>
+                     ) : (
+                        <h1 className={styles.userName}>
+                           {user.username}
+                           <FaPencilAlt
+                              onClick={() => editName.toggleInput(true)}
+                           />
+                        </h1>
+                     )
+                  ) : (
+                     <h1 className={`${styles.userName} ${styles.flexColumn}`}>
+                        <div>{user.username}</div>
+                        <span
+                           onClick={() => {
+                              unfriendForm.toggleView();
+                              if (friendship !== "true") {
+                                 handleFriendBtnClick();
+                              }
+                           }}
+                           className={`
                            ${styles.friendStatusBtn}
                            ${
                               friendship === "true" &&
@@ -308,41 +296,53 @@ function Profile () {
                            ${friendship === "false" && styles.friendBtnGold} 
                            ${friendship === "pending" && styles.friendBtnGreen}
                         `}
-                     >
-                        {friendship === "true" && "Friends"}
-                        {friendship === "false" && "Add Friend"}
-                        {friendship === "pending" && "Cancel Request"}
+                        >
+                           {friendship === "true" && "Friends"}
+                           {friendship === "false" && "Add Friend"}
+                           {friendship === "pending" && "Cancel Request"}
 
-                        {friendship === "true" && unfriendForm.view && (
-                           <div className={styles.unfreindList}>
-                              <div onClick={handleFriendBtnClick}>Unfriend</div>
-                              <div
-                                 onClick={() => unfriendForm.toggleView(false)}
-                              >
-                                 Cancel
+                           {friendship === "true" && unfriendForm.view && (
+                              <div className={styles.unfreindList}>
+                                 <div onClick={handleFriendBtnClick}>
+                                    Unfriend
+                                 </div>
+                                 <div
+                                    onClick={() =>
+                                       unfriendForm.toggleView(false)
+                                    }
+                                 >
+                                    Cancel
+                                 </div>
                               </div>
-                           </div>
-                        )}
-                     </span>
-                  </h1>
-               )}
-            </>}
+                           )}
+                        </span>
+                     </h1>
+                  )}
+               </>
+            )}
          </div>
 
          <div className={styles.lowerSection}>
             <div className={styles.postContainer}>
-               {loading && <Loader/>}
-               {postsList &&
-                  postsList.map((post, index) => {
-                     return (
-                        <Post
-                           post={post}
-                           self={self}
-                           handleDeletePost={handleDeletePost}
-                           key={index}
-                        />
-                     );
-                  })}
+               {loading ? (
+                  <Loader />
+               ) : (
+                  postsList &&
+                  (postsList.length > 0 ? (
+                     postsList.map((post, index) => {
+                        return (
+                           <Post
+                              post={post}
+                              self={self}
+                              handleDeletePost={handleDeletePost}
+                              key={index}
+                           />
+                        );
+                     })
+                  ) : (
+                     <h2 className={styles.noPost}>No posts yet...</h2>
+                  ))
+               )}
             </div>
 
             <div className={styles.rightColContainer}>

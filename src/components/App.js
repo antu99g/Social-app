@@ -35,6 +35,7 @@ export default function App() {
             closeOnClick={true}
             theme="colored"
             pauseOnHover={false}
+            pauseOnFocusLoss={false}
          />
 
          <Routes>

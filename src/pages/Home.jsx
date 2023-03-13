@@ -12,8 +12,6 @@ import {toast} from "react-toastify";
 function Home () {
    const [postsList, setPostsList] = useState([]); // list of all posts
 
-   const [newPosts, setNewPosts] = useState([]); // list of all posts
-
    const [friendsList, setFriendsList] = useState([]); // list of all friends
 
    const [usersList, setUsersList] = useState([]); // list of all users
@@ -22,7 +20,7 @@ function Home () {
 
    const [width, setWidth] = useState(); // matching width of two buttons to add post
 
-   const [loading, setLoading] = useState(postsList.length<1); // matching width of two buttons to add post
+   const [loading, setLoading] = useState(true); // loader before all posts loaded
 
    const widthRef = useRef(); // reference of button to addimage
 
@@ -35,7 +33,6 @@ function Home () {
 
 
    useLayoutEffect(() => {
-      // console.log('rendered');
       // Matching width of two buttons in form to add-post
       setWidth(widthRef.current.offsetWidth);
 
@@ -51,18 +48,10 @@ function Home () {
 
       // Fetching all posts (api call)
       fetchAllPosts()
-      .then((res) => setPostsList((list) => res.data))
+      .then((res) => {setPostsList((list) => res.data);setLoading(false);})
       .catch((err) => {console.log(err);})
    }, []);
 
-   
-   useEffect(() => {
-      if (postsList.length < 1) {
-         setLoading(true);
-      } else {
-         setLoading(false);
-      }
-   }, [postsList]);
 
 
    // Function to add new post
@@ -82,12 +71,7 @@ function Home () {
          const response = await createPost(formData);
          setImages([]);
          
-         setNewPosts((posts) => [response.data, ...posts]);
-         // setPostsList((posts) => [response.data, ...posts]); // adding new post to state
-         // const center = document.getElementById("centerContainer").children[1];
-         // center.insertBefore(<Post post={response.data}/>, center.children[1]);
-         // center.insertAdjacentElement("beforebegin", <Post post={response.data}/>);
-         // console.log(center);
+         setPostsList((posts) => [response.data, ...posts]);
          e.target.reset();
          if (response.success) {
             toast.success("New post added");
@@ -187,11 +171,6 @@ function Home () {
                   </button>
                </div>
             </form>
-
-            {newPosts.length > 0 && newPosts.map((post, i) => {
-               if(post.images.length>0){console.log('have img', i);}
-               return <Post post={post} key={i} />; 
-            })}
 
             {loading ? (
                <Loader text={'posts'} />
