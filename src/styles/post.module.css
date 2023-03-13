@@ -17,6 +17,9 @@
 .editPostBtns > *{
    margin: 2px;
 }
+.editPostBtns > small:hover{
+   cursor: pointer;
+}
 
 /* Confirmation options on delete-post */
 .confirmDelete{

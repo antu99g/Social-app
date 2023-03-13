@@ -189,6 +189,7 @@ function Home () {
             </form>
 
             {newPosts.length > 0 && newPosts.map((post, i) => {
+               if(post.images.length>0){console.log('have img', i);}
                return <Post post={post} key={i} />; 
             })}
 
