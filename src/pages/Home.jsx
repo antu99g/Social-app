@@ -12,6 +12,8 @@ import {toast} from "react-toastify";
 function Home () {
    const [postsList, setPostsList] = useState([]); // list of all posts
 
+   const [newPosts, setNewPosts] = useState([]); // list of all posts
+
    const [friendsList, setFriendsList] = useState([]); // list of all friends
 
    const [usersList, setUsersList] = useState([]); // list of all users
@@ -80,7 +82,8 @@ function Home () {
          const response = await createPost(formData);
          setImages([]);
          
-         setPostsList((posts) => [response.data, ...posts]); // adding new post to state
+         setNewPosts((posts) => [response.data, ...posts]);
+         // setPostsList((posts) => [response.data, ...posts]); // adding new post to state
          // const center = document.getElementById("centerContainer").children[1];
          // center.insertBefore(<Post post={response.data}/>, center.children[1]);
          // center.insertAdjacentElement("beforebegin", <Post post={response.data}/>);
@@ -184,6 +187,10 @@ function Home () {
                   </button>
                </div>
             </form>
+
+            {newPosts.length > 0 && newPosts.map((post, i) => {
+               return <Post post={post} key={i} />; 
+            })}
 
             {loading ? (
                <Loader text={'posts'} />

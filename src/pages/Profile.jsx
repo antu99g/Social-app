@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAuth, useEditField, useToggleView } from "../hooks";
 import { Link } from 'react-router-dom';
 import styles from '../styles/profile.module.css';
-import { FriendRequest, Friend, Post } from "../components";
+import { FriendRequest, Friend, Post, Loader } from "../components";
 import {
    fetchPosts,
    sendFriendReq,
@@ -31,6 +31,8 @@ function Profile () {
    const [friendship, setFriendship] = useState(''); // friendship status with logged user
 
    const [image, setImage] = useState(null); // used for changing profile image
+
+   const [loading, setLoading] = useState(true);
 
    const auth = useAuth(); // details of logged user (from context api)
 
@@ -60,11 +62,12 @@ function Profile () {
          // Setting friendship status (when seeing others profile)
          if (!self) {
             checkFriendship(detailResponse.data);
-         }
-         
+         }         
+   
          // Fetching all posts
          const postResponse = await fetchPosts(userId);
          setPostsList(postResponse.data);
+         setLoading(false);
       })();
    }, []);
 
@@ -229,8 +232,8 @@ function Profile () {
             <FaArrowLeft /> Home
          </Link>
 
-         {user && (
-            <div className={styles.profileDetail}>
+         <div className={styles.profileDetail}>
+            {user && <>
                {editProfileImg.view ? (
                   <>
                      <input
@@ -323,11 +326,12 @@ function Profile () {
                      </span>
                   </h1>
                )}
-            </div>
-         )}
+            </>}
+         </div>
 
          <div className={styles.lowerSection}>
             <div className={styles.postContainer}>
+               {loading && <Loader/>}
                {postsList &&
                   postsList.map((post, index) => {
                      return (
@@ -377,7 +381,7 @@ function Profile () {
                      ))}
                </div>
 
-               {user && self && user.requests.length > 0 &&(
+               {user && self && user.requests.length > 0 && (
                   <FriendRequest
                      requests={user.requests}
                      handleAddFriend={handleAddFriend}
