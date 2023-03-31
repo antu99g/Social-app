@@ -30,7 +30,7 @@ To run this project, run the following command
 
 ## Hosted Link
 
-Visit site: [Social App](https://social-app-325a11.netlify.app)
+Visit site: [Social App](https://social-app-0e37db.netlify.app)
 
 ## Screenshots
 
