@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, useRef, useEffect } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth, useForceUpdate } from "../hooks";
 import { createPost, fetchAllFriends, fetchAllPosts, fetchAllUsers, prefix } from "../api";
@@ -37,19 +37,23 @@ function Home () {
       setWidth(widthRef.current.offsetWidth);
 
       // Fetching all friends (api call)
-      fetchAllFriends()
-      .then((res) => setFriendsList((list) => res.data))
-      .catch((err) => {console.log(err);})
-
+      const fetchFriends =   fetchAllFriends()
+      .then((res) => setFriendsList(res.data))
+      .catch((err) => {console.log(err)});
+   
       // Fetching all users (api call)
-      fetchAllUsers()
-      .then((res) => setUsersList((list) => res.data))
-      .catch((err) => {console.log(err);})
-
+      const fetchUsers =   fetchAllUsers()
+      .then((res) => setUsersList(res.data))
+      .catch((err) => {console.log(err)});
+   
       // Fetching all posts (api call)
-      fetchAllPosts()
-      .then((res) => {setPostsList((list) => res.data);setLoading(false);})
-      .catch((err) => {console.log(err);})
+      const fetchPosts =   fetchAllPosts()
+      .then((res) => {setPostsList(res.data);setLoading(false);})
+      .catch((err) => {console.log(err)});
+
+      // Sending all fetch requests together
+      Promise.all([fetchFriends, fetchUsers, fetchPosts]);
+
    }, []);
 
 
