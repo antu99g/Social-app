@@ -169,8 +169,8 @@ function Profile () {
       const response = await deletePost(postid);
 
       // Removing deleted post from state
-      // const newPostList = postsList.filter((post) => post.postid !== postid);
-      // setPostsList(newPostList);
+      const newPostList = postsList.filter((post) => post.postid !== postid);
+      setPostsList(newPostList);
 
       if (response.success) {
          toast.warn("Post deleted successfully", { icon: false });
