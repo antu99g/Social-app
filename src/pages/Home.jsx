@@ -37,12 +37,12 @@ function Home () {
       setWidth(widthRef.current.offsetWidth);
 
       // Fetching all friends (api call)
-      const fetchFriends =   fetchAllFriends()
+      const fetchFriends = fetchAllFriends()
       .then((res) => setFriendsList(res.data))
       .catch((err) => {console.log(err)});
    
       // Fetching all users (api call)
-      const fetchUsers =   fetchAllUsers()
+      const fetchUsers = fetchAllUsers()
       .then((res) => setUsersList(res.data))
       .catch((err) => {console.log(err)});
    
@@ -55,7 +55,6 @@ function Home () {
       Promise.all([fetchFriends, fetchUsers, fetchPosts]);
 
    }, []);
-
 
 
    // Function to add new post
@@ -101,7 +100,7 @@ function Home () {
 
    return (
       <div className={styles.homepage}>
-         <ul className={styles.left}>
+         <ul className={styles.leftContainer}>
             <h2>Profile</h2>
             <Link
                to={`/profile/${auth.user.userid}`}
@@ -131,7 +130,7 @@ function Home () {
             )}
          </ul>
 
-         <div className={styles.center} id='centerContainer'>
+         <div className={styles.centerContainer} id='centerContainer'>
             <form onSubmit={handleAddNewPost} className={styles.newPost}>
                <input
                   type="text"
@@ -186,7 +185,7 @@ function Home () {
 
          </div>
 
-         <ul className={styles.right}>
+         <ul className={styles.rightContainer}>
             <h2>All Users</h2>
             {usersList.map((user, index) => {
                return (

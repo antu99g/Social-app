@@ -14,36 +14,36 @@
 
 /* Left Section (profile, friends) */
 
-.left{
+.leftContainer{
    width: 24%;
    list-style-type: none;
 }
-.left > h2{
+.leftContainer > h2{
    margin: 0;
    margin-bottom: 8px;
    letter-spacing: .05em;
 }
-.left > .friendsHeader{
+.leftContainer > .friendsHeader{
    margin-top: 3vh;
 }
-.left a{
+.leftContainer a{
    color: var(--link-color);
    text-decoration: none;
 }
-.left > .profileLink > img{
+.leftContainer > .profileLink > img{
    width: 20px;
    margin: 0 3px -3px 0;
    border-radius: 60%;
 }
-.left > .friendHome{
+.leftContainer > .friendHome{
    margin-bottom: 1vh;
 }
-.left > .friendHome img{
+.leftContainer > .friendHome img{
    width: 25px;
    border-radius: 8px;
    margin: 0 5px -5px 0;
 }
-.left > .noFriend{
+.leftContainer > .noFriend{
    margin: 0;
    font-size: 1.1em;
    color: grey;
@@ -52,15 +52,15 @@
 
 /* Center Section (create post, all posts) */
 
-.center{
+.centerContainer{
    width: 60%;
    height: 89.5vh;
    padding: 0 5px;
 }
-.center::-webkit-scrollbar {
+.centerContainer::-webkit-scrollbar {
    width: 0 !important;
 }
-.center > form, .center > div{
+.centerContainer > form, .centerContainer > div{
    background-color: white;
    border: 1px solid lightgrey;
    border-radius: 5px;
@@ -163,23 +163,23 @@
 
 
 /* Right Section (all users) */
-.right{
+.rightContainer{
    width: 25%;
    list-style-type: none;
 }
-.right > h2{
+.rightContainer > h2{
    margin: 0;
    margin-bottom: 8px;
    letter-spacing: .05em;
 }
-.right a{
+.rightContainer a{
    color: var(--link-color);
    text-decoration: none;
 }
-.right > .userHome{
+.rightContainer > .userHome{
    margin-bottom: 1vh;
 }
-.right > .userHome img{
+.rightContainer > .userHome img{
    width: 25px;
    border-radius: 5px;
    margin: 0 5px -5px 0;
