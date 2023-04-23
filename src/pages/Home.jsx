@@ -144,7 +144,7 @@ function Home () {
                         let imageUrl = URL.createObjectURL(image);
                         return (
                            <div className={styles.previewImg} key={index}>
-                              <img src={imageUrl} alt="avatar" />
+                              <img src={imageUrl} alt="Post Image" />
                               <FaTimesCircle
                                  onClick={() => removeImgFromPreview(index)}
                               />
