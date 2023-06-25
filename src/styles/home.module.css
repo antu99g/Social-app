@@ -1,186 +1,171 @@
 .homepage {
-   height: 90vh;
-   width: 100%;
-   padding-top: 9.5vh;
-   display: flex;
-   justify-content: space-around;
-   overflow-y: hidden;
-   background-color: #f7f7f7;
+  height: 100%;
+  width: 100%;
+  padding-top: 9.5vh;
+  display: flex;
+  overflow-y: hidden;
+  background-color: #f7f7f7;
 }
-.homepage > *{
-   overflow-y: auto;
+.homepage > * {
+  overflow-y: auto;
 }
-
 
 /* Left Section (profile, friends) */
 
-.leftContainer{
-   width: 24%;
-   list-style-type: none;
+.leftContainer {
+  width: 24%;
+  list-style-type: none;
 }
-.leftContainer > h2{
-   margin: 0;
-   margin-bottom: 8px;
-   letter-spacing: .05em;
+.leftContainer > h2 {
+  margin: 0;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
 }
-.leftContainer > .friendsHeader{
-   margin-top: 3vh;
+.leftContainer > .friendsHeader {
+  margin-top: 3vh;
 }
-.leftContainer a{
-   color: var(--link-color);
-   text-decoration: none;
+.leftContainer a {
+  color: var(--link-color);
+  text-decoration: none;
 }
-.leftContainer > .profileLink > img{
-   width: 20px;
-   margin: 0 3px -3px 0;
-   border-radius: 60%;
+.leftContainer > .profileLink > img {
+  width: 20px;
+  margin: 0 3px -3px 0;
+  border-radius: 60%;
 }
-.leftContainer > .friendHome{
-   margin-bottom: 1vh;
+.leftContainer > .friendHome {
+  margin-bottom: 1vh;
 }
-.leftContainer > .friendHome img{
-   width: 25px;
-   border-radius: 8px;
-   margin: 0 5px -5px 0;
+.leftContainer > .friendHome img {
+  width: 25px;
+  border-radius: 8px;
+  margin: 0 5px -5px 0;
 }
-.leftContainer > .noFriend{
-   margin: 0;
-   font-size: 1.1em;
-   color: grey;
+.leftContainer > .noFriend {
+  margin: 0;
+  font-size: 1.1em;
+  color: grey;
 }
-
 
 /* Center Section (create post, all posts) */
 
-.centerContainer{
-   width: 60%;
-   height: 89.5vh;
-   padding: 0 5px;
+.centerContainer {
+  width: 60%;
+  height: 89.5vh;
+  padding: 0 5px;
 }
 .centerContainer::-webkit-scrollbar {
-   width: 0 !important;
+  width: 0 !important;
 }
-.centerContainer > form, .centerContainer > div{
-   background-color: white;
-   border: 1px solid lightgrey;
-   border-radius: 5px;
-   box-shadow: 0 0 5px 0px lightgrey;
+.centerContainer > form,
+.centerContainer > div {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0px lightgrey;
 }
-
 
 /* Add new post section */
 
-.newPost{
-   margin-top: 2.5vh;
-   padding-top: 3vh;
+.newPost {
+  margin-top: 2.5vh;
+  padding-top: 3vh;
 }
-.newPost > input[type=text]{
-   padding: 10px;
-   padding-left: 12px;
-   border-radius: 8px;
-   border: 1px solid dodgerblue;
-   display: block;
-   margin: auto;
-   margin-bottom: 1vh;
-   width: 50%;
+.newPost > input[type="text"] {
+  padding: 10px;
+  padding-left: 12px;
+  border-radius: 8px;
+  border: 1px solid dodgerblue;
+  display: block;
+  margin: auto;
+  margin-bottom: 1vh;
+  width: 50%;
 }
-.newPost input[type=file]{
-   display: none;
+.newPost input[type="file"] {
+  display: none;
 }
-.newPostBtns{
-   display: flex;
-   justify-content: space-between;
+.newPostBtns {
+  display: flex;
+  justify-content: space-between;
 }
-.newPost > .newPostBtns > label{
-   padding: 3px 5px;
-   border-top-right-radius: 5px;
-   border-bottom-left-radius: 5px;
-   background-color: var(--primary-blue);
-   color: white;
+.newPost > .newPostBtns > label {
+  padding: 3px 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: var(--primary-blue);
+  color: white;
 }
-.newPost > .newPostBtns > label > svg{
-   border-radius: 6px;
-   margin-bottom: -2px;
-   margin-right: 3px;
+.newPost > .newPostBtns > label > svg {
+  border-radius: 6px;
+  margin-bottom: -2px;
+  margin-right: 3px;
 }
-
 
 /* Button for adding new post */
 
-.newPost > .newPostBtns > button{
-   /* display: inline; */
-   /* margin: 0; */
-   /* margin-left: 1vw; */
-   /* height: 100%; */
-   /* color: mediumaquamarine; */
-   /* border: 2px solid mediumaquamarine; */
-   /* font-weight: bold; */padding: 5px;
-   background-color: white;
-   border: 0;
-   border-top: 1px solid;
-   border-left: 1px solid;
-   border-top-left-radius: 5px;
-   border-bottom-right-radius: 5px;
-   /* background-color: #7743DB; */
-   /* background-color: rgb(40, 177, 235); */
-   background-color: var(--primary-blue);
-   color: white;
-   font-size: 1.1em;
-   /* float: right; */
+.newPost > .newPostBtns > button {
+  padding: 5px;
+  background-color: white;
+  border: 0;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: var(--primary-blue);
+  color: white;
+  font-size: 1.1em;
 }
-.newPost > .newPostBtns > button > svg{
-   margin-right: 5px;
-   margin-bottom: -2px;
+.newPost > .newPostBtns > button > svg {
+  margin-right: 5px;
+  margin-bottom: -2px;
 }
-.newPost > .newPostBtns > button:active{
-   transform: scaleX(.95);
+.newPost > .newPostBtns > button:active {
+  transform: scaleX(0.95);
 }
-
 
 /* Image preview before upload */
 
-.previewImgContainer{
-   margin: 10px 0;
-   margin-left: 20px;
-   display: flex;
-   max-width: 100%;
-   flex-wrap: wrap;
+.previewImgContainer {
+  margin: 10px 0;
+  margin-left: 20px;
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
-.previewImg{
-   position: relative;
-   margin: 3px 3px 0;
+.previewImg {
+  position: relative;
+  margin: 3px 3px 0;
 }
-.previewImg img:first-child{
-   width: 50px;
+.previewImg img:first-child {
+  width: 50px;
 }
-.previewImg > svg{
-   position: absolute;
-   top: -5px;
-   right: -5px;
-   background-color: white;
-   border-radius: 50%;
+.previewImg > svg {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: white;
+  border-radius: 50%;
 }
-
 
 /* Right Section (all users) */
-.rightContainer{
-   width: 25%;
-   list-style-type: none;
+.rightContainer {
+  width: 25%;
+  list-style-type: none;
 }
-.rightContainer > h2{
-   margin: 0;
-   margin-bottom: 8px;
-   letter-spacing: .05em;
+.rightContainer > h2 {
+  margin: 0;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
 }
-.rightContainer a{
-   color: var(--link-color);
-   text-decoration: none;
+.rightContainer a {
+  color: var(--link-color);
+  text-decoration: none;
 }
-.rightContainer > .userHome{
-   margin-bottom: 1vh;
+.rightContainer > .userHome {
+  margin-bottom: 1vh;
 }
-.rightContainer > .userHome img{
-   width: 25px;
-   border-radius: 5px;
-   margin: 0 5px -5px 0;
+.rightContainer > .userHome img {
+  width: 25px;
+  border-radius: 5px;
+  margin: 0 5px -5px 0;
 }

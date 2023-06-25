@@ -1,47 +1,47 @@
-.formContainer{
-   width: 22vw;
-   border: 1px solid var(--login-color);
-   border-radius: 10px;
-   padding: 20px 10px;
-   margin: auto;
-   margin-top: 10vh;
-   font-family: sans-serif;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: space-around;
-   font-family: 'Noto Sans', sans-serif;
+.formContainer {
+  width: 22vw;
+  border: 1px solid var(--login-color);
+  border-radius: 10px;
+  padding: 20px 10px;
+  margin: auto;
+  margin-top: 15vh;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.logo{
-   font-size: 2.5em;
-   font-family: 'Lobster', 'cursive';
-   color: #FF597B;
-   margin-top: 10px;
+.logo {
+  font-size: 2.5em;
+  font-family: "Lobster", "cursive";
+  color: #ff597b;
+  margin-top: 10px;
 }
 
-.formContainer > h3{
-   margin: 0;
-   font-size: 1.5em;
-   color: var(--login-color);
+.formContainer > h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: var(--login-color);
 }
 
-.formContainer > form button{
-   display: block;
-   padding: 5px 8px 7px;
-   margin: 15px auto 20px;
-   border: 0;
-   border-radius: 5px;
-   color: aliceblue;
-   background-color: var(--login-color);
+.formContainer > form button {
+  display: block;
+  padding: 5px 8px 7px;
+  margin: 15px auto 20px;
+  border: 0;
+  border-radius: 5px;
+  color: aliceblue;
+  background-color: var(--login-color);
 }
 
-.formContainer > form input{
-   padding: 7px;
-   border: 1px solid grey;
-   border-radius: 5px;
+.formContainer > form input {
+  padding: 7px;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
-.formContainer > form p{
-   margin: 18px 0 5px;
+.formContainer > form p {
+  margin: 18px 0 5px;
 }

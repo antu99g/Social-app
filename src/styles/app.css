@@ -1,15 +1,23 @@
-:root{
-   --logo-pink: #FC5185;
-   --primary-blue: rgb(40, 177, 235);
-   --comment-color: rgb(27, 151, 27);
-   --like-btn-color: #362FD9;
-   --link-color: #364F6B;
-   --name-font: 'Ubuntu', sans-serif;
-   --login-color: #554994;
+:root {
+  --logo-pink: #fc5185;
+  --primary-blue: rgb(40, 177, 235);
+  --comment-color: rgb(27, 151, 27);
+  --like-btn-color: #362fd9;
+  --link-color: #364f6b;
+  --name-font: "Ubuntu", sans-serif;
+  --login-color: #554994;
 }
-body{
-   font-family: 'Noto Sans', sans-serif;
+body {
+  font-family: "Noto Sans", sans-serif;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-.hover:hover{
-   cursor: pointer;
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.hover:hover {
+  cursor: pointer;
 }

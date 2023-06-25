@@ -1,65 +1,47 @@
 import { useState } from "react";
 import { removeFriend, prefix } from "../api";
-import styles from '../styles/friendship.module.css';
-import { useToggleView } from "../hooks";
+import styles from "../styles/friendship.module.css";
 
-function Friend({ friends, self }) {
-   const [isFriend, setIsFriend] = useState(true); // friendship status with logged user
+function Friend({ friend, self }) {
+  const [isFriend, setIsFriend] = useState(true); // friendship status with logged user
 
-   const unfriendForm = useToggleView(); // cofirmation before unfriend
-   
-   // Function for removing friend
-   const handleUnfriendClick = async (id) => {
-      await removeFriend(id);
-      setIsFriend(false); // changing friendship status
-   };
+  const [formView, setFormView] = useState(false); // showing and hiding unfriend form
 
-   return (
-      <ul className={styles.listContainer}>
-         <h2>Friends</h2>
-         {friends.map((friend, index) => {
-            return (
-               <li className={`${!self && styles.alignCenter}`} key={index}>
-                  <img
-                     src={`${prefix}/${friend.avatar}`}
-                     className={styles.friendAvatar}
-                     alt="avatar"
-                  />
-                  <span className={styles.userdetail}>
-                     <div>{friend.username}</div>
-                     {self && (
-                        <span
-                           onClick={() => unfriendForm.toggleView()}
-                           className={unfriendForm.view ? styles.darkBg : ""}
-                        >
-                           {isFriend ? "Unfriend" : "Removed from friends"}
+  // Function for removing friend
+  const handleUnfriendClick = async (id) => {
+    await removeFriend(id);
+    setIsFriend(false); // changing friendship status
+  };
 
-                           {unfriendForm.view && (
-                              <div className={styles.unfreindList}>
-                                 <div
-                                    onClick={() =>
-                                       handleUnfriendClick(friend.userid)
-                                    }
-                                 >
-                                    Unfriend
-                                 </div>
-                                 <div
-                                    onClick={() =>
-                                       unfriendForm.toggleView(false)
-                                    }
-                                 >
-                                    Cancel
-                                 </div>
-                              </div>
-                           )}
-                        </span>
-                     )}
-                  </span>
-               </li>
-            );
-         })}
-      </ul>
-   );
+  return (
+    <li className={`${!self && styles.flexCenter} ${styles.request}`}>
+      <img
+        src={`${prefix}/${friend.avatar}`}
+        className={styles.friendAvatar}
+        alt="avatar"
+      />
+      <span className={styles.userdetail}>
+        <div>{friend.username}</div>
+        {self && (
+          <span
+            onClick={() => setFormView((value) => !value)}
+            className={formView ? styles.darkBg : ""}
+          >
+            {isFriend ? "Unfriend" : "Removed from friends"}
+
+            {formView && (
+              <div className={styles.unfreindList}>
+                <div onClick={() => handleUnfriendClick(friend.userid)}>
+                  Unfriend
+                </div>
+                <div onClick={() => setFormView(false)}>Cancel</div>
+              </div>
+            )}
+          </span>
+        )}
+      </span>
+    </li>
+  );
 }
 
 export default Friend;
